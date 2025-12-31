@@ -6,6 +6,21 @@ on:
   pull_request:
     branches: [ main, master ]
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version number (e.g., 0.0.2, 1.0.0)'
+        required: false
+        type: string
+      version_type:
+        description: 'Version bump type (if version not specified)'
+        required: false
+        type: choice
+        options:
+          - none
+          - patch
+          - minor
+          - major
+        default: 'none'
 
 jobs:
   build:
@@ -19,6 +34,24 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '20.x'
+    
+    - name: Set Version
+      if: github.event_name == 'workflow_dispatch' && (github.event.inputs.version != '' || github.event.inputs.version_type != 'none')
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        
+        if [ -n "${{ github.event.inputs.version }}" ]; then
+          echo "Setting version to ${{ github.event.inputs.version }}"
+          npm version ${{ github.event.inputs.version }} --no-git-tag-version
+        elif [ "${{ github.event.inputs.version_type }}" != "none" ]; then
+          echo "Bumping version: ${{ github.event.inputs.version_type }}"
+          npm version ${{ github.event.inputs.version_type }} --no-git-tag-version
+        fi
+        
+        git add package.json
+        git commit -m "chore: update version to $(node -p "require('./package.json').version") [skip ci]" || echo "No version changes"
+        git push || echo "Nothing to push"
     
     - name: Install dependencies
       run: npm install
