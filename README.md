@@ -1,131 +1,124 @@
 # Special Characters Viewer
 
-A VS Code extension that reveals invisible special characters in your files, making it easy to spot newlines, tabs, spaces, and other hidden characters.
+**Reveal invisible characters in your code - spot newlines, tabs, spaces, and hidden Unicode characters instantly!**
 
-## Features
+[![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/joshivilas.special-characters-viewer)](https://marketplace.visualstudio.com/items?itemName=joshivilas.special-characters-viewer)
+[![Downloads](https://img.shields.io/visual-studio-marketplace/d/joshivilas.special-characters-viewer)](https://marketplace.visualstudio.com/items?itemName=joshivilas.special-characters-viewer)
+[![Rating](https://img.shields.io/visual-studio-marketplace/r/joshivilas.special-characters-viewer)](https://marketplace.visualstudio.com/items?itemName=joshivilas.special-characters-viewer)
 
-- **Toggle Special Characters**: Show/hide special characters with a single command
-- **Visual Indicators**: Each special character is displayed with a unique symbol
-- **Status Bar Integration**: Quick toggle from the status bar
-- **Keyboard Shortcut**: Use `Ctrl+Shift+Alt+S` (or `Cmd+Shift+Alt+S` on Mac) to toggle
-- **Real-time Updates**: Decorations update as you type
+## ✨ Features
 
-### Supported Special Characters
+- 🔍 **Toggle Visibility** - Show/hide special characters with one click or keyboard shortcut
+- 📝 **Escape Sequence Notation** - Displays characters using standard notation (`\n`, `\t`, `\r`, etc.)
+- 🎯 **9 Special Characters Supported** - Including newlines, tabs, spaces, and zero-width Unicode characters
+- 🚀 **Real-time Updates** - See characters appear as you type
+- 💡 **Hover Tooltips** - Get detailed descriptions of each character
+- 📊 **Status Bar Integration** - Quick access via status bar indicator
+- ⌨️ **Keyboard Shortcut** - `Ctrl+Shift+Alt+S` (Windows/Linux) or `Cmd+Shift+Alt+S` (Mac)
 
-- **Line Feed (LF)**: `\n` → ↵
-- **Carriage Return (CR)**: `\r` → ←
-- **Tab**: `\t` → →
-- **Space**: ` ` → ·
-- **Non-breaking Space**: `\u00A0` → °
-- **Zero Width Space**: `\u200B` → ‌
-- **Zero Width Non-Joiner**: `\u200C` → ‍
-- **Zero Width Joiner**: `\u200D` → ‍
-- **Zero Width No-Break Space (BOM)**: `\uFEFF` → ⁠
+## 🎬 Demo
 
-## Usage
+> **Tip**: Perfect for debugging line ending issues, finding hidden Unicode characters, or understanding file formatting!
 
-### Activating the Extension
+## 📋 Supported Characters
 
-1. **Via Command Palette**:
-   - Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac)
-   - Type "Toggle Special Characters"
-   - Press Enter
+| Character | Display | Code | Description |
+|-----------|---------|------|-------------|
+| Line Feed | `\n` | U+000A | Standard Unix/Linux line ending |
+| Carriage Return | `\r` | U+000D | Classic Mac line ending component |
+| Tab | `\t` | U+0009 | Horizontal tab character |
+| Space | `␣` | U+0020 | Regular space |
+| Delete | `\x7F` | U+007F | Delete control character |
+| Non-breaking Space | `\u00A0` | U+00A0 | Space that prevents line breaks |
+| Zero Width Space | `\u200B` | U+200B | Invisible space for word breaking |
+| Zero Width Non-Joiner | `\u200C` | U+200C | Prevents character joining |
+| Zero Width Joiner | `\u200D` | U+200D | Forces character joining |
+| Byte Order Mark (BOM) | `\uFEFF` | U+FEFF | Zero-width no-break space |
 
-2. **Via Keyboard Shortcut**:
-   - Press `Ctrl+Shift+Alt+S` (or `Cmd+Shift+Alt+S` on Mac)
+## 🚀 Getting Started
 
-3. **Via Status Bar**:
-   - Click the eye icon in the status bar (bottom right)
+### Installation
 
-### Understanding the Display
+1. Open VS Code
+2. Press `Ctrl+P` (or `Cmd+P` on Mac)
+3. Type `ext install joshivilas.special-characters-viewer`
+4. Press Enter
 
-When enabled, special characters will be displayed with visual indicators:
-- The symbols appear before the actual character
-- Hover over a symbol to see its description
-- The status bar icon changes to indicate the current state
+Or search for "Special Characters Viewer" in the Extensions view (`Ctrl+Shift+X`).
 
-## Installation
+### Usage
 
-### From Source
+**Method 1: Command Palette**
+1. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac)
+2. Type "Toggle Special Characters"
+3. Press Enter
 
-1. Clone this repository
-2. Run `npm install` to install dependencies
-3. Press `F5` to open a new VS Code window with the extension loaded
-4. Test the extension by creating a file with special characters
+**Method 2: Keyboard Shortcut**
+- Windows/Linux: `Ctrl+Shift+Alt+S`
+- Mac: `Cmd+Shift+Alt+S`
 
-### Building the Extension
+**Method 3: Status Bar**
+- Click the 👁️ icon in the bottom-right status bar
 
-```bash
-# Install dependencies
-npm install
+When enabled, the status bar icon will highlight, and special characters will be displayed inline in your document.
 
-# Compile TypeScript
-npm run compile
+## 🎯 Use Cases
 
-# Watch for changes
-npm run watch
+- **Line Ending Issues**: Quickly spot mixed `\r\n` (Windows) vs `\n` (Unix) line endings
+- **Tab vs Spaces**: Identify inconsistent indentation in your code
+- **Unicode Debugging**: Find invisible zero-width characters that break rendering
+- **File Format Analysis**: Understand text encoding and formatting
+- **Code Review**: Catch whitespace issues before commit
+- **Data Cleaning**: Identify problematic characters in text files
 
-# Package the extension
-vsce package
-```
-
-## Development
-
-### Project Structure
-
-```
-special-characters-viewer/
-├── src/
-│   └── extension.ts      # Main extension logic
-├── .vscode/
-│   ├── launch.json       # Debug configuration
-│   └── tasks.json        # Build tasks
-├── package.json          # Extension manifest
-├── tsconfig.json         # TypeScript configuration
-└── README.md            # This file
-```
-
-### Testing the Extension
-
-1. Press `F5` to open a new Extension Development Host window
-2. Create or open a file with special characters
-3. Toggle the special characters view using the command or keyboard shortcut
-4. Verify that the characters are displayed correctly
-
-## Requirements
+## ⚙️ Requirements
 
 - Visual Studio Code version 1.85.0 or higher
 
-## Extension Settings
+## 🔧 Extension Settings
 
-Currently, this extension does not add any VS Code settings. Future versions may include:
-- Customizable character symbols
+This extension currently works out of the box with no configuration needed.
+
+**Future Settings (Planned)**:
+- Customize display symbols
+- Choose which characters to show/hide
 - Color customization
-- Character-specific enable/disable options
+- Font size adjustment
 
-## Known Issues
+## 📝 Release Notes
 
-- Performance may be affected on very large files with many special characters
-- Some zero-width characters may not be visible depending on the font
+### 0.0.1 (Initial Release)
 
-## Release Notes
+- ✅ Toggle special characters visibility
+- ✅ Support for 9 common invisible characters
+- ✅ Escape sequence notation display
+- ✅ Status bar integration
+- ✅ Keyboard shortcut support
+- ✅ Real-time document updates
+- ✅ Hover tooltips with descriptions
 
-### 0.0.1
+## 🐛 Known Issues
 
-Initial release:
-- Toggle special characters visibility
-- Support for common invisible characters
-- Status bar integration
-- Keyboard shortcut support
+- Performance may be impacted on very large files (10,000+ lines)
+- Some fonts may not render zero-width character indicators clearly
 
-## Contributing
+## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Found a bug or have a feature request? Contributions are welcome!
 
-## License
+- **Issues**: [Report a bug or request a feature](https://github.com/joshivilas/special-characters-viewer/issues)
+- **Pull Requests**: [Contribute code](https://github.com/joshivilas/special-characters-viewer/pulls)
 
-MIT
+## 📄 License
+
+MIT License - See [LICENSE](LICENSE) file for details
+
+## 🙏 Acknowledgments
+
+Built with ❤️ using the VS Code Extension API
 
 ---
 
-**Enjoy revealing those hidden characters!** 👁️
+**Happy debugging! 🎉** If you find this extension helpful, please consider leaving a ⭐ rating on the marketplace!
+
+[Report Issues](https://github.com/joshivilas/special-characters-viewer/issues) | [Request Features](https://github.com/joshivilas/special-characters-viewer/issues) | [View Source](https://github.com/joshivilas/special-characters-viewer)
