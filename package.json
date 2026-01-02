@@ -6,7 +6,7 @@
   "publisher": "joshivilas",
   "repository": {
     "type": "git",
-    "url": "https://github.com/joshivilas/special-characters-viewer"
+    "url": "https://github.com/joshivilas/spec-char-vsextension"
   },
   "engines": {
     "vscode": "^1.85.0"
