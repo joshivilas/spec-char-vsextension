@@ -70,6 +70,15 @@ export function activate(context: vscode.ExtensionContext) {
             }
         })
     );
+
+    // Update decorations when visible ranges change (scrolling)
+    context.subscriptions.push(
+        vscode.window.onDidChangeTextEditorVisibleRanges(event => {
+            if (isEnabled && event.textEditor === vscode.window.activeTextEditor) {
+                updateDecorations();
+            }
+        })
+    );
 }
 
 function updateStatusBar() {
@@ -98,7 +107,8 @@ function updateDecorations() {
 
     clearDecorations();
 
-    const text = editor.document.getText();
+    // Get visible ranges (what's actually shown in viewport)
+    const visibleRanges = editor.visibleRanges;
     
     // Create decoration types for each special character
     specialChars.forEach(({ char, display, description }) => {
@@ -116,25 +126,30 @@ function updateDecorations() {
         
         const decorations: vscode.DecorationOptions[] = [];
         
-        // Find all occurrences of the special character
-        let match;
-        let searchIndex = 0;
-        
-        while (searchIndex < text.length) {
-            const index = text.indexOf(char, searchIndex);
-            if (index === -1) {
-                break;
+        // Only search within visible ranges
+        for (const visibleRange of visibleRanges) {
+            const startOffset = editor.document.offsetAt(visibleRange.start);
+            const endOffset = editor.document.offsetAt(visibleRange.end);
+            const visibleText = editor.document.getText(visibleRange);
+            
+            let searchIndex = 0;
+            while (searchIndex < visibleText.length) {
+                const relativeIndex = visibleText.indexOf(char, searchIndex);
+                if (relativeIndex === -1) {
+                    break;
+                }
+                
+                const absoluteIndex = startOffset + relativeIndex;
+                const startPos = editor.document.positionAt(absoluteIndex);
+                const endPos = editor.document.positionAt(absoluteIndex + char.length);
+                
+                decorations.push({
+                    range: new vscode.Range(startPos, endPos),
+                    hoverMessage: description
+                });
+                
+                searchIndex = relativeIndex + char.length;
             }
-            
-            const startPos = editor.document.positionAt(index);
-            const endPos = editor.document.positionAt(index + char.length);
-            
-            decorations.push({
-                range: new vscode.Range(startPos, endPos),
-                hoverMessage: description
-            });
-            
-            searchIndex = index + char.length;
         }
         
         editor.setDecorations(decorationType, decorations);
