@@ -106,8 +106,8 @@ This extension currently works out of the box with no configuration needed.
 
 Found a bug or have a feature request? Contributions are welcome!
 
-- **Issues**: [Report a bug or request a feature](https://github.com/joshivilas/special-characters-viewer/issues)
-- **Pull Requests**: [Contribute code](https://github.com/joshivilas/special-characters-viewer/pulls)
+- **Issues**: [Report a bug or request a feature](https://github.com/joshivilas/spec-char-vsextension/issues)
+- **Pull Requests**: [Contribute code](https://github.com/joshivilas/spec-char-vsextension/pulls)
 
 ## 📄 License
 
@@ -121,4 +121,4 @@ Built with ❤️ using the VS Code Extension API
 
 **Happy debugging! 🎉** If you find this extension helpful, please consider leaving a ⭐ rating on the marketplace!
 
-[Report Issues](https://github.com/joshivilas/special-characters-viewer/issues) | [Request Features](https://github.com/joshivilas/special-characters-viewer/issues) | [View Source](https://github.com/joshivilas/special-characters-viewer)
+[Report Issues](https://github.com/joshivilas/spec-char-vsextension/issues) | [Request Features](https://github.com/joshivilas/spec-char-vsextension/issues) | [View Source](https://github.com/joshivilas/spec-char-vsextension/issues)
